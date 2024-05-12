@@ -11,14 +11,16 @@ cryptography
 defusedxml
 distro
 dj-database-url
-django
+Django
 django-allauth
+django-cors-headers
 django-crispy-forms
 django-formtools
 django-guardian
 django-shortuuidfield
 djangorestframework
 djangorestframework-jwt
+djangorestframework-simplejwt
 gunicorn
 h11
 httpcore
@@ -33,7 +35,7 @@ psycopg2-binary
 pycparser
 pydantic
 pydantic_core
-pyjwt
+PyJWT
 python-decouple
 python3-openid
 pytz

@@ -9,6 +9,34 @@ from rest_framework.permissions import AllowAny
 from .models import CustomUser
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
+from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth import authenticate
+from rest_framework import status
+
+class LoginView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        email_or_phone = request.data.get('email_or_phone')
+        password = request.data.get('password')
+
+        if not email_or_phone or not password:
+            return Response({"error": "Both email/phone and password are required"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Attempt to authenticate user
+        user = authenticate(username=email_or_phone, password=password)
+        if user:
+            # Create token manually
+            refresh = RefreshToken.for_user(user)
+            return Response({
+                'refresh': str(refresh),
+                'access': str(refresh.access_token),
+                'message': 'Login successful. Welcome to the JWT Authentication page using React Js and Django!'
+            })
+        else:
+            return Response({"error": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
+
+
 
 class HomeView(APIView):
      

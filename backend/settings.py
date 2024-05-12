@@ -40,10 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'authentification',
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
-    'authentification',
+
 ]
+
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -146,3 +148,5 @@ SIMPLE_JWT = {
      'ROTATE_REFRESH_TOKENS': True,
      'BLACKLIST_AFTER_ROTATION': True
 }
+
+AUTH_USER_MODEL = 'authentification.CustomUser'

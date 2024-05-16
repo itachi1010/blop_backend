@@ -31,7 +31,8 @@ class LoginView(APIView):
             return Response({
                 'refresh': str(refresh),
                 'access': str(refresh.access_token),
-                'message': 'Login successful. Welcome to the JWT Authentication page using React Js and Django!'
+                'message': 'Login successful. Welcome to the JWT Authentication page using React Js and Django!',
+                'user': email_or_phone
             })
         else:
             return Response({"error": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
